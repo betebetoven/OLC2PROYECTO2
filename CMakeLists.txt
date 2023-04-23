@@ -71,6 +71,7 @@ set(PROJECT_SOURCES
         AST/No_Terminales/Expresiones/nt_modulo.h AST/No_Terminales/Expresiones/nt_modulo.cpp
         AST/No_Terminales/nt_declfunc.h AST/No_Terminales/nt_declfunc.cpp
         AST/No_Terminales/nt_llamada.h AST/No_Terminales/nt_llamada.cpp
+        Interprete/Contexto/miniresultado.h Interprete/Contexto/miniresultado.cpp
 
 
 

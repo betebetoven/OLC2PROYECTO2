@@ -73,7 +73,7 @@
    </property>
    <widget class="QMenu" name="menula_concha_de_la_lora">
     <property name="title">
-     <string>hola</string>
+     <string>cambio</string>
     </property>
    </widget>
    <addaction name="menula_concha_de_la_lora"/>

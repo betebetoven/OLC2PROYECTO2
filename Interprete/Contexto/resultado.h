@@ -4,8 +4,10 @@
 
 #include <QString>
 #include <QVariant>
+#include "miniresultado.h"
 
 class Resultado {
+
 public:
     QVariant valor;
     QString tipo;
@@ -18,6 +20,13 @@ public:
 
     QVariant getValor() const;
     QString getTipo() const;
+    QString cadena = "";
+
+
+
+    MiniResultado miniResultado;
+
+
 };
 
 #endif // RESULTADO_H

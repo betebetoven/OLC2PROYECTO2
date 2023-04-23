@@ -1,7 +1,7 @@
 #include "nt_id.h"
 
 Resultado *NT_ID::Interpretar(Environment *ctx, EnvironmentFunc *ctx2) {
-    std::cout << "si llega al Intewrpretar de Nt_ID--    " << this->id.toStdString()<<std::endl;
+    //std::cout << "si llega al Intewrpretar de Nt_ID--    " << this->id.toStdString()<<std::endl;
    return new Resultado(this->id);
 }
 

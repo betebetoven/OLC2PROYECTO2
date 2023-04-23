@@ -10,9 +10,11 @@
 #include <sstream>
 //class Environment;
 class EnvironmentFunc;
+
 class AbstractExpr
 {
 public:
+
     virtual Resultado* Interpretar(Environment* ctx, EnvironmentFunc* ctx2) = 0;
        virtual QString Graficar() = 0;
 };

@@ -26,7 +26,9 @@ public:
 void print_variant(const std::variant<std::nullptr_t, int, float, std::string, bool>& var);
 
 class Environment {
+
 public:
+
     Environment();
     Environment(Environment* father);
     void addVariable(const std::string& name, const std::string& type, const std::variant<std::nullptr_t, int, float, std::string, bool>& content);
