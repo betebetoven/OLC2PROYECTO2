@@ -21,16 +21,54 @@ Resultado *NT_Negacion::Interpretar(Environment *ctx, EnvironmentFunc *ctx2) {
     // Integer - Integer
     if (izqTipo == "Integer" && derTipo == "Integer") {
         int diff = izqValor.toInt() - derValor.toInt();
+
+        if(derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" - "<<temp.toStdString()<<std::endl;
+            resultado = new Resultado(diff);
+            QString generado = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+            resultado->miniResultado.temporales.push_front(generado);
+            MiniResultado::x++;
+        }
+        else
         resultado = new Resultado(diff);
+
+
     }
     // Integer - Float, Float - Integer, Float - Float
     else if ((izqTipo == "Integer" && derTipo == "Float") || (izqTipo == "Float" && derTipo == "Integer") || (izqTipo == "Float" && derTipo == "Float")) {
         float diff = izqValor.toFloat() - derValor.toFloat();
+        if(derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toFloat() <<" - "<<temp.toStdString()<<std::endl;
+            resultado = new Resultado(diff);
+            QString generado = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+            resultado->miniResultado.temporales.push_front(generado);
+            MiniResultado::x++;
+
+        }
+        else
         resultado = new Resultado(diff);
+
     }
     // Integer - Boolean, Boolean - Integer, Boolean - Float, Float - Boolean, Boolean - Boolean
     else if ((izqTipo == "Integer" && derTipo == "Boolean") || (izqTipo == "Boolean" && derTipo == "Integer") || (izqTipo == "Float" && derTipo == "Boolean") || (izqTipo == "Boolean" && derTipo == "Float") || (izqTipo == "Boolean" && derTipo == "Boolean")) {
         int diff = izqValor.toInt() - derValor.toInt();
+        if(derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" - "<<temp.toStdString()<<std::endl;
+            resultado = new Resultado(diff);
+            QString generado = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+            resultado->miniResultado.temporales.push_front(generado);
+            MiniResultado::x++;
+        }
+
+        else
         resultado = new Resultado(diff);
     }
     else {
