@@ -40,7 +40,7 @@ Resultado *NT_DeclVar::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
         QString varName = idR->getValor().toString();
         ctx->addVariable(varName.toStdString(), tipoR->getTipo().toStdString(), nullptr);
     }
-    ctx->report();
+    //ctx->report();
     return nullptr;
 }
 QString NT_DeclVar::Graficar() {
