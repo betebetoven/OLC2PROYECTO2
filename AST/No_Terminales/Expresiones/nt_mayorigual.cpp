@@ -19,7 +19,48 @@ Resultado *NT_MayorIgual::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
     // Integer >= Integer, Integer >= Float, Integer >= Boolean, Float >= Float, Float >= Integer, Float >= Boolean, Boolean >= Boolean, Boolean >= Integer, Boolean >= Float
     if ((izqTipo == "Integer" && (derTipo == "Integer" || derTipo == "Float" || derTipo == "Boolean")) || (izqTipo == "Float" && (derTipo == "Float" || derTipo == "Integer" || derTipo == "Boolean")) || (izqTipo == "Boolean" && (derTipo == "Boolean" || derTipo == "Integer" || derTipo == "Float"))) {
         bool greaterEqual = izqValor.toDouble() >= derValor.toDouble();
-        resultado = new Resultado(greaterEqual);
+        QString ev = "L" +QString::fromStdString(std::to_string(MiniResultado::L++));
+        QString ef = "L" +QString::fromStdString(std::to_string(MiniResultado::L++));
+        if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()==0 )
+        {
+        std::cout<<"if("<<izqValor.toFloat() <<">=" <<derValor.toFloat() << ") then goto "<<ev.toStdString() <<";"<<std::endl;
+        std::cout<<"goto "<<ef.toStdString() <<";"<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"if("<<izqValor.toFloat() <<">=" <<temp.toStdString() << ") then goto "<<ev.toStdString() <<";"<<std::endl;
+            std::cout<<"goto "<<ef.toStdString() <<";"<<std::endl;
+
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()==0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            std::cout<<"if("<<temp.toStdString() <<">=" <<derValor.toFloat() << ") then goto "<<ev.toStdString() <<";"<<std::endl;
+            std::cout<<"goto "<<ef.toStdString() <<";"<<std::endl;
+
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            QString temp2 = derR->miniResultado.temporales[0];
+            std::cout<<"if("<<temp.toStdString() <<">=" <<temp2.toStdString() << ") then goto "<<ev.toStdString() <<";"<<std::endl;
+            std::cout<<"goto "<<ef.toStdString() <<";"<<std::endl;
+
+        }
+
+
+
+         resultado = new Resultado(greaterEqual);
+        QString verdadero = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+        QString falso= QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+        resultado->miniResultado.EV.push_front(ev);
+        resultado->miniResultado.EF.push_front(ef);
+        //MiniResultado::x++;
+
+
     }
     else {
         // Unsupported operand types

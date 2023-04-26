@@ -4,11 +4,11 @@
 T_Boolean::T_Boolean(QString str) : str(str) {}
 
 Resultado *T_Boolean::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
-    bool value = false;
+    int value = 0;
     if (str.toLower() == "true") {
-        value = true;
+        value = 1;
     } else if (str.toLower() == "false") {
-        value = false;
+        value = 0;
     }
     return new Resultado(value);
 }

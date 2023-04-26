@@ -9,6 +9,7 @@ class MiniResultado {
 
 public:
     static int x;
+    static int L;
 
     QVector<QString>temporales = {};
     QVector<QString>EV = {};

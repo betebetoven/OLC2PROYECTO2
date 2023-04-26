@@ -25,12 +25,64 @@ Resultado *NT_Division::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
     // Integer / Integer
     if (izqTipo == "Integer" && derTipo == "Integer") {
         int quotient = izqValor.toInt() / derValor.toInt();
-        resultado = new Resultado(quotient);
+        if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()==0 )
+        std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" / "<<derValor.toInt()<<std::endl;
+        else if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" / "<<temp.toStdString()<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()==0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" / "<<derValor.toInt()<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            QString temp2 = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" / "<<temp2.toStdString()<<std::endl;
+        }
+
+
+
+         resultado = new Resultado(quotient);
+        QString generado = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+        resultado->miniResultado.temporales.push_front(generado);
+        MiniResultado::x++;
+
     }
     // Integer / Float, Float / Integer, Float / Float
     else if ((izqTipo == "Integer" && derTipo == "Float") || (izqTipo == "Float" && derTipo == "Integer") || (izqTipo == "Float" && derTipo == "Float")) {
         float quotient = izqValor.toFloat() / derValor.toFloat();
-        resultado = new Resultado(quotient);
+        if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()==0 )
+        std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toFloat() <<" / "<<derValor.toFloat()<<std::endl;
+        else if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toFloat() <<" / "<<temp.toStdString()<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()==0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" / "<<derValor.toFloat()<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            QString temp2 = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" / "<<temp2.toStdString()<<std::endl;
+        }
+
+
+
+       resultado = new Resultado(quotient);
+        QString generado = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+        resultado->miniResultado.temporales.push_front(generado);
+        MiniResultado::x++;
+
     }
     // Integer / Boolean, Boolean / Integer, Boolean / Float, Float / Boolean, Boolean / Boolean
     else if ((izqTipo == "Integer" && derTipo == "Boolean") || (izqTipo == "Boolean" && derTipo == "Integer") || (izqTipo == "Float" && derTipo == "Boolean") || (izqTipo == "Boolean" && derTipo == "Float") || (izqTipo == "Boolean" && derTipo == "Boolean")) {

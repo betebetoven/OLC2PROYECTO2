@@ -19,7 +19,34 @@ Resultado *NT_Modulo::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
     // Integer % Integer
     if (izqTipo == "Integer" && derTipo == "Integer") {
         int mod = izqValor.toInt() % derValor.toInt();
-        resultado = new Resultado(mod);
+        if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()==0 )
+        std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" % "<<derValor.toInt()<<std::endl;
+        else if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" % "<<temp.toStdString()<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()==0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" % "<<derValor.toInt()<<std::endl;
+        }
+        else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()!=0 )
+        {
+            QString temp = izqR->miniResultado.temporales[0];
+            QString temp2 = derR->miniResultado.temporales[0];
+            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" % "<<temp2.toStdString()<<std::endl;
+        }
+
+
+
+         resultado = new Resultado(mod);
+        QString generado = QString::fromStdString("t"+(std::to_string(MiniResultado::x)));
+
+        resultado->miniResultado.temporales.push_front(generado);
+        MiniResultado::x++;
+
+
     }
     // Integer % Boolean, Boolean % Integer, Boolean % Boolean, Boolean % Integer
     else if ((izqTipo == "Integer" && derTipo == "Boolean") || (izqTipo == "Boolean" && derTipo == "Integer") || (izqTipo == "Boolean" && derTipo == "Boolean")  ) {
