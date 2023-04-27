@@ -6,15 +6,19 @@ Environment::Environment() {}
 Environment::Environment(Environment* father) {
     if (father != nullptr) {
         symbol_table.insert(father->symbol_table.begin(), father->symbol_table.end());
+        this->placer = father->placer;
     }
+    else
+     this->placer = 0;
 }
 
 void Environment::addVariable(const std::string& name, const std::string& type, const std::variant<std::nullptr_t, int, float, std::string, bool>& content) {
     //std::cout << "si llega al addvariable de env" << std::endl;
     if (!variableExists(name)) {
         //AbstractExpr*prueba;
-        VariableInfo variable_info{type, content};
+        VariableInfo variable_info{type, content,this->placer};
         symbol_table[name] = variable_info;
+        this->placer++;
     }
 }
 //...
@@ -67,6 +71,9 @@ void Environment::report() {
                   << ", Type: " << entry.second.type
                   << ", Content: ";
         print_variant(entry.second.content);
+         std::cout <<  ",Placer:"<<
+                    std::to_string(entry.second.placer);
+
         std::cout << std::endl;
     }
 }
@@ -81,3 +88,11 @@ std::variant<std::nullptr_t, int, float, std::string, bool> Environment::getVari
     }
     return std::variant<std::nullptr_t, int, float, std::string, bool>{}; // Return
 }
+
+int Environment::getvariableplacer(const std::string& name) {
+    if (variableExists(name)) {
+        return symbol_table[name].placer;
+    }
+    return -1 ;// Return
+}
+

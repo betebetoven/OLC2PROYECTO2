@@ -13,6 +13,7 @@
 struct VariableInfo {
     std::string type;
     std::variant<std::nullptr_t, int, float, std::string, bool> content; // Added float
+    int placer;
 };
 
 class ContentPrinter {
@@ -28,7 +29,7 @@ void print_variant(const std::variant<std::nullptr_t, int, float, std::string, b
 class Environment {
 
 public:
-
+    int placer;
     Environment();
     Environment(Environment* father);
     void addVariable(const std::string& name, const std::string& type, const std::variant<std::nullptr_t, int, float, std::string, bool>& content);
@@ -38,7 +39,7 @@ public:
     bool variableExists(const std::string& name);
     void report();
     std::variant<std::nullptr_t, int, float, std::string, bool> getVariableContent(const std::string& name);
-
+    int getvariableplacer(const std::string& name);
     std::map<std::string, VariableInfo> symbol_table;
 };
 

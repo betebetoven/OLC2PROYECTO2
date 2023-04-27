@@ -17,9 +17,15 @@ Resultado* T_ID::Interpretar(Environment* ctx,EnvironmentFunc* ctx2) {
 
     // Retrieve the variable content from the environment
     auto content = ctx->getVariableContent(id_str);
-
+    int placer = ctx->getvariableplacer(id_str);
     // Create a new Resultado object with the content of the variable
     Resultado* resultado = std::visit(ResultadoVisitor{}, content);
+    std::cout<<"t"<<MiniResultado::x<<" =P + "<<placer<<std::endl;
+    MiniResultado::x++;
+    std::cout<<"t"<<MiniResultado::x<<" = stack[t"<<MiniResultado::x-1<<"];"<<std::endl;
+    QString generado = "t"+QString::fromStdString(std::to_string(MiniResultado::x));
+    resultado->miniResultado.temporales.push_front(generado);
+    MiniResultado::x++;
     return resultado;
 }
 
