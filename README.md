@@ -53,11 +53,8 @@ Ensure you have the following tools installed on your system:
 
 ### Usage
 
-To use the interpreter, run the following command with your C file:
-
-```sh
-./CInterpreter < your_c_file.c
-```
+The interpreter has a friendly Interface where the user can enter the code written in C, then the code generates the C output code,
+this was an Academic project but I think it can be an Excellent and Hard excercise to understand memory handling when coding on high level Languages.
 
 This will output the three-address code (TAC) of the provided C program.
 
@@ -91,9 +88,6 @@ Contributions to improve the interpreter are welcome. Please follow these steps 
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ## Acknowledgments
 
