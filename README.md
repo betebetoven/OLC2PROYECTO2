@@ -26,7 +26,7 @@ Ensure you have the following tools installed on your system:
 1. **Clone the repository**
 
    ```sh
-   git clone https://github.com/yourusername/C-Language-Interpreter.git
+   git clone https://github.com/betebetoven/OLC2PROYECTO2.git
    ```
 
 2. **Navigate to the project directory**
